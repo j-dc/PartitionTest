@@ -1,49 +1,43 @@
 ﻿$dbName = 'PartitionsTest'
 $dpName ="$dbName.dacpac"
 
-#FIRST LOOK FOR THE LATEST FILE IN DEBUG OR RELEASE FOLDER
-
-$srcRelease = [IO.Path]::GetFullPath( [IO.Path]::Combine($PSScriptRoot,"..\$dbName\bin\Release\$dpName"));
-$srcDebug = [IO.Path]::GetFullPath( [IO.Path]::Combine($PSScriptRoot,"..\$dbName\bin\Debug\$dpName"));
-
-$src ="";
-if((Test-Path $srcDebug) -and (Test-Path $srcRelease)){
-	$dRelease = (Get-Item $srcRelease).CreationTime;
-	$dDebug = (Get-Item $srcDebug).CreationTime;
-
-	if($dDebug -gt $dRelease){
-		Write-Host -ForegroundColor DarkYellow 'Debug will be used' ;
-		$src = $srcDebug;
-	}else{ 
-		Write-Output 'Release will be used.';
-		$src = $srcRelease;
-	}
-} elseif (Test-Path $srcDebug){
-	Write-Host -ForegroundColor DarkYellow 'Debug will be used' ;
-	$src = $srcDebug;
-} elseif (Test-Path $srcRelease){
-		Write-Host -ForegroundColor Yellow 'Release will be used.' ;
-		$src = $srcRelease;
-} else {
-	Write-Host "No recent build found" -ForegroundColor DarkRed;
-	exit;	
-}
-
-
 $dst = [IO.Path]::GetFullPath( [IO.Path]::Combine($PSScriptRoot,'data'));
 $op = [IO.Path]::GetFullPath( [IO.Path]::Combine($PSScriptRoot,'change.sql'));
+$dpPath = [IO.Path]::Combine($dst,$dpName);
+
+
+#clean existing local files
+Remove-Item $dst -Recurse -Force -ErrorAction SilentlyContinue
+New-Item -ItemType Directory $dst > $null;
+
 Remove-Item $op -ErrorAction SilentlyContinue
 
-if(-not(test-path $dst)){
-	New-Item -ItemType Directory $dst;
+#FIRST LOOK FOR THE LATEST FILE IN DEBUG OR RELEASE FOLDER
+$filenames = @(
+	[IO.Path]::GetFullPath( [IO.Path]::Combine($PSScriptRoot,"..\$dbName\bin\Release\$dpName")),
+	[IO.Path]::GetFullPath( [IO.Path]::Combine($PSScriptRoot,"..\$dbName\bin\Debug\$dpName"))
+);
+
+$src = $null
+$mostRecentTime = [datetime]::MinValue
+
+foreach ($filename in $filenames) {
+    if (Test-Path $filename) {
+        $file = Get-Item $filename
+        if ($file.LastWriteTime -gt $mostRecentTime) {
+            $src = $file
+            $mostRecentTime = $file.LastWriteTime
+        }
+    }
+}
+if ($src -eq $null) {
+    Write-host -ForegroundColor DarkRed "None of the files exist."
+    exit;
 }
 
-$dpPath = [IO.Path]::Combine($dst,$dpName);
-Remove-Item $dpPath -ErrorAction SilentlyContinue
-
+Write-Host -ForegroundColor DarkYellow "Using $src";
 
 #copy the file localy
-Write-Host $src;
 Copy-Item $src $dst;
 Write-Host -ForegroundColor DarkYellow "Dacpac creationtime: " (Get-Item $dst).LastWriteTime;
 
