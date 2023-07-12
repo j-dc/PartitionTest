@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[Foreign]
+﻿CREATE TABLE [dbo].[Simple]
 (
-	[ForeignId] INT NOT NULL PRIMARY KEY IDENTITY (1,1)
+	[SimpleID] INT NOT NULL PRIMARY KEY IDENTITY (1,1)
 )

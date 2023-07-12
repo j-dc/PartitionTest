@@ -41,7 +41,7 @@ Remove-Item $dpPath -ErrorAction SilentlyContinue
 
 Write-Host $src;
 Copy-Item $src $dst;
-
+Write-Host -ForegroundColor DarkYellow "Dacpac creationtime: " (Get-Item $srcRelease).CreationTime;
 
 sqlpackage /version:true;
 
