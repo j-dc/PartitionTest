@@ -26,9 +26,6 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <DefineTrace>true</DefineTrace>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DefineDebug>true</DefineDebug>
-  </PropertyGroup>
   <ItemGroup>
     <Folder Include="Storage" />
     <Folder Include="dbo" />

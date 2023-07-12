@@ -8,6 +8,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="PublishLocal.ps1" />
+    <None Include="changeScriptOnMySystem.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

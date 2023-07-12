@@ -9,16 +9,10 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "PartitionsTest", "Partition
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0ECDCE3B-B76F-49A4-8DA4-C5974BF3C6EF}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{0ECDCE3B-B76F-49A4-8DA4-C5974BF3C6EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0ECDCE3B-B76F-49A4-8DA4-C5974BF3C6EF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4E0D94D4-9134-4F1F-BFF9-2D6122276960}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4E0D94D4-9134-4F1F-BFF9-2D6122276960}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4E0D94D4-9134-4F1F-BFF9-2D6122276960}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{0ECDCE3B-B76F-49A4-8DA4-C5974BF3C6EF}.Release|Any CPU.ActiveCfg = Debug|x86
 		{4E0D94D4-9134-4F1F-BFF9-2D6122276960}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E0D94D4-9134-4F1F-BFF9-2D6122276960}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4E0D94D4-9134-4F1F-BFF9-2D6122276960}.Release|Any CPU.Deploy.0 = Release|Any CPU
