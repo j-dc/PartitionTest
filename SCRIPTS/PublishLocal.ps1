@@ -45,7 +45,7 @@ Remove-Item $dpPath -ErrorAction SilentlyContinue
 #copy the file localy
 Write-Host $src;
 Copy-Item $src $dst;
-Write-Host -ForegroundColor DarkYellow "Dacpac creationtime: " (Get-Item $srcRelease).CreationTime;
+Write-Host -ForegroundColor DarkYellow "Dacpac creationtime: " (Get-Item $dst).LastWriteTime;
 
 #now that we have the wanted file,   publish it to local DB
 #then generate a change script
