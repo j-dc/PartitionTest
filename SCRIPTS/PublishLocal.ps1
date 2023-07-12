@@ -1,6 +1,8 @@
 ﻿$dbName = 'PartitionsTest'
 $dpName ="$dbName.dacpac"
 
+#FIRST LOOK FOR THE LATEST FILE IN DEBUG OR RELEASE FOLDER
+
 $srcRelease = [IO.Path]::GetFullPath( [IO.Path]::Combine($PSScriptRoot,"..\$dbName\bin\Release\$dpName"));
 $srcDebug = [IO.Path]::GetFullPath( [IO.Path]::Combine($PSScriptRoot,"..\$dbName\bin\Debug\$dpName"));
 
@@ -39,9 +41,15 @@ if(-not(test-path $dst)){
 $dpPath = [IO.Path]::Combine($dst,$dpName);
 Remove-Item $dpPath -ErrorAction SilentlyContinue
 
+
+#copy the file localy
 Write-Host $src;
 Copy-Item $src $dst;
 Write-Host -ForegroundColor DarkYellow "Dacpac creationtime: " (Get-Item $srcRelease).CreationTime;
+
+#now that we have the wanted file,   publish it to local DB
+#then generate a change script
+# The change script should not contain  "INSERT INTO" statements
 
 sqlpackage /version:true;
 
