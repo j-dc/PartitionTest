@@ -1,0 +1,7 @@
+﻿CREATE PARTITION SCHEME [PS_TEST]
+    AS PARTITION [PF_TEST]
+    TO (
+		[PRIMARY], 
+        [PRIMARY], 
+        [PRIMARY]
+    );

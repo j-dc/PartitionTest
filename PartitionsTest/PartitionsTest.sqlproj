@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Sdk Name="Microsoft.Build.Sql" Version="0.1.10-preview" />
+  <PropertyGroup>
+    <name>PartitionsTest</name>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql150DatabaseSchemaProvider</DSP>
+    <ModelCollation>1033,CI</ModelCollation>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <RunSqlCodeAnalysis>True</RunSqlCodeAnalysis>
+    <ServiceBrokerOption>EnableBroker</ServiceBrokerOption>
+    <AllowSnapshotIsolation>True</AllowSnapshotIsolation>
+    <ReadCommittedSnapshot>True</ReadCommittedSnapshot>
+    <GenerateCreateScript>False</GenerateCreateScript>
+    <IncludeSchemaNameInFileName>True</IncludeSchemaNameInFileName>
+    <MemoryOptimizedElevateToSnapshot>True</MemoryOptimizedElevateToSnapshot>
+    <QueryStoreDesiredState>ReadWrite</QueryStoreDesiredState>
+    <QueryStoreMaxStorageSize>1000</QueryStoreMaxStorageSize>
+    <QueryStoreMaxPlansPerQuery>200</QueryStoreMaxPlansPerQuery>
+    <QueryStoreCaptureMode>Auto</QueryStoreCaptureMode>
+    <DefaultCollation>Latin1_General_CI_AS</DefaultCollation>
+    <ProjectGuid>{4e0d94d4-9134-4f1f-bff9-2d6122276960}</ProjectGuid>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+    <GenerateSqlClrDdl>False</GenerateSqlClrDdl>
+    <GenerateSqlClrSymbols>False</GenerateSqlClrSymbols>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <DefineTrace>true</DefineTrace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DefineDebug>true</DefineDebug>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Storage" />
+    <Folder Include="dbo" />
+    <Folder Include="dbo\Tables" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Storage\PF_TEST.sql" />
+    <Build Include="Storage\PS_TEST.sql" />
+    <Build Include="dbo\Tables\partitionTable.sql" />
+    <Build Include="dbo\Tables\simpleTable.sql" />
+  </ItemGroup>
+</Project>
